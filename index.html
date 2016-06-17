@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Search</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <!-- <script src="https://apis.google.com/js/client.js" async></script> -->
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="./lib/angular.min.js"></script>
+        <script src="lib/angular-sanitize.min.js"></script>
+        <script type="text/javascript" src="./js/quillr.js"></script>
+        <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+        
+
+  </head>
+  <body ng-app="quillrApp" ng-controller="quillrCtrl">
+    <button id="login-link">login</button>
+    <header>
+            <h1 class="heading text-center">YouTube Search</h1> {{x}}
+    </header>
+    <div class="row cont">
+        <div class="col-md-8 col-md-offset-2">
+            <form action="#">
+                <p><input type="text" ng-model="query" id="query" placeholder="Type something..." class="form-control" /></p>
+                <p><input type="submit" id="search-button" value="Search" class="form-control btn btn-primary" disabled ng-click="search(query)"></p>
+            </form>
+            <div id="search-container" ng-repeat="item in data"><!-- {{data}} -->
+                <div class="imgCont">
+                    <iframe width="200" height="200" ng-src="{{trustSrc(item.initUrl)}}">
+                    </iframe>
+                </div>
+                <div class="titleCont">
+                    <span>{{item.snippet.title}}</span>
+                </div>
+                <span class="title">{{item.snippet.channelTitle}}</span>
+                <p><span>{{item.snippet.description}}</span></p>
+            </div>
+        </div>
+    </div>
+
+    
+  </body>
+</html>
